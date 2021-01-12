@@ -79,7 +79,7 @@ namespace Goiar.Simple.Cqrs.Tests
             Assert.Contains(_eventQueue,
                 e => e.CommandName == "Fake Simple Command"
                     && e.CreatedBy == "NoId"
-                    && e.Content.Contains(command.Message)
+                    && (e.Content as FakeSimpleCommand).Message == command.Message
                     && e.Result == "Success");
         }
 
@@ -100,7 +100,7 @@ namespace Goiar.Simple.Cqrs.Tests
             Assert.Contains(_eventQueue,
                 e => e.CommandName == "Fake Simple Command"
                     && e.CreatedBy == createdBy
-                    && e.Content.Contains(command.Message)
+                    && (e.Content as FakeSimpleCommand).Message == command.Message
                     && e.Result == "Success");
         }
 
@@ -123,7 +123,7 @@ namespace Goiar.Simple.Cqrs.Tests
 
             Assert.Contains(_eventQueue,
                 e => e.CommandName == "Fake Simple Command"
-                    && e.Content.Contains(command.Message)
+                    && (e.Content as FakeSimpleCommand).Message == command.Message
                     && e.Result.Contains("weee i fail =D"));
         }
 
@@ -172,7 +172,7 @@ namespace Goiar.Simple.Cqrs.Tests
 
             Assert.Contains(_eventQueue,
                 e => e.CommandName == "Fake Response Command"
-                    && e.Content.Contains(command.Message)
+                    && (e.Content as FakeSimpleCommand).Message == command.Message
                     && e.Result.Contains(command.Message)
                     && e.CreatedBy == "NoId");
         }
@@ -192,7 +192,7 @@ namespace Goiar.Simple.Cqrs.Tests
 
             Assert.Contains(_eventQueue,
                 e => e.CommandName == "Fake Response Command"
-                    && e.Content.Contains(command.Message)
+                    && (e.Content as FakeSimpleCommand).Message == command.Message
                     && e.Result.Contains(command.Message)
                     && e.CreatedBy == createdBy);
         }
@@ -230,7 +230,7 @@ namespace Goiar.Simple.Cqrs.Tests
 
             Assert.Contains(_eventQueue,
                 e => e.CommandName == "Fake Response Command"
-                    && e.Content.Contains(command.Message)
+                    && (e.Content as FakeSimpleCommand).Message == command.Message
                     && e.Result.Contains("weee i fail =D"));
         }
 

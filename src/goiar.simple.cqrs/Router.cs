@@ -46,17 +46,18 @@ namespace Goiar.Simple.Cqrs
         #region Command implementations
 
         /// <inheritdoc />
-        public async Task<TResponse> Send<TResponse>(ICommand<TResponse> message)
+        public async Task<TResponse> Send<TResponse, TCommand>(TCommand message)
             where TResponse : class
+            where TCommand: ICommand<TResponse>
         {
             var @event = new Event<TResponse>(
                 _userIdentityHolder.UserId ?? "NoId",
                 _correlationId);
-            @event.SetCommand<TResponse, ICommand<TResponse>>(message);
+            @event.SetCommand<TResponse, TCommand>(message);
 
             try
             {
-                var handler = _serviceProvider.GetService(typeof(ICommandHandler<TResponse, ICommand<TResponse>>)) as ICommandHandler<TResponse, ICommand<TResponse>>;
+                var handler = _serviceProvider.GetService(typeof(ICommandHandler<TResponse, TCommand>)) as ICommandHandler<TResponse, TCommand>;
 
                 if (handler is null)
                 {
@@ -74,7 +75,7 @@ namespace Goiar.Simple.Cqrs
             }
             finally
             {
-                if (ShouldEnque(typeof(ICommand<TResponse>)))
+                if (ShouldEnque(typeof(TCommand)))
                 {
                     _eventQueue.Enqueue(@event);
                 }

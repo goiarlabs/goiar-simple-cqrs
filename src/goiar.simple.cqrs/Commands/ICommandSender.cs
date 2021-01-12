@@ -14,8 +14,9 @@ namespace Goiar.Simple.Cqrs.Commands
         /// <typeparam name="TCommand">The command sended</typeparam>
         /// <param name="message">Message to send</param>
         /// <returns>the response needed</returns>
-        Task<TResponse> Send<TResponse>(ICommand<TResponse> message)
-            where TResponse : class;
+        Task<TResponse> Send<TResponse, TCommand>(TCommand message)
+            where TResponse : class
+            where TCommand : ICommand<TResponse>;
 
         /// <summary>
         /// Sends a command to his handler

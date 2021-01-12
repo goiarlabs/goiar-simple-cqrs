@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using goiar.simple.cqrs.sample.aspnetcore.Commands;
+﻿using goiar.simple.cqrs.sample.aspnetcore.Commands;
 using goiar.simple.cqrs.sample.aspnetcore.Model;
 using goiar.simple.cqrs.sample.aspnetcore.Queries;
 using Goiar.Simple.Cqrs.Commands;
 using Goiar.Simple.Cqrs.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace goiar.simple.cqrs.sample.aspnetcore.Controllers
 {
@@ -47,13 +46,13 @@ namespace goiar.simple.cqrs.sample.aspnetcore.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(WheatherRequest request)
         {
-            var result = await _commandSender.Send(
+            var result = await _commandSender.Send<Weather, CreateWeatherCommand>(
                 new CreateWeatherCommand(
-                    request.Date, 
-                    request.Summary, 
+                    request.Date,
+                    request.Summary,
                     request.TemperatureC));
 
-            return CreatedAtAction("GetById", result);
+            return CreatedAtAction("GetById", new { id = result.Id }, result);
         }
     }
 }

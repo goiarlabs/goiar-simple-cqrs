@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using goiar.simple.cqrs.sample.aspnetcore.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,12 @@ namespace goiar.simple.cqrs.sample.aspnetcore
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddSingleton(new InmemoryDb());
+
+            services.AddCqrs(a => a.UseStaticUserIdentity("coso"));
+            services.AddCommandHandlersFromAssemblyOf(typeof(Startup));
+            services.AddQueryHandlersFromAssemblyOf(typeof(Startup));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -49,6 +56,8 @@ namespace goiar.simple.cqrs.sample.aspnetcore
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCqrs();
 
             app.UseEndpoints(endpoints =>
             {
