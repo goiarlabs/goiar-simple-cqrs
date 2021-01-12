@@ -3,7 +3,6 @@ using Goiar.Simple.Cqrs.Commands;
 using Goiar.Simple.Cqrs.Entities;
 using Goiar.Simple.Cqrs.Queries;
 using Goiar.Simple.Cqrs.UserIdentities;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
