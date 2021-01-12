@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace goiar.simple.cqrs.sample.aspnetcore
+namespace Goiar.Simple.Cqrs.sample.aspnetcore
 {
     public class Program
     {

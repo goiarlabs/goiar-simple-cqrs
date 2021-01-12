@@ -1,10 +1,10 @@
-﻿using goiar.simple.cqrs.sample.aspnetcore.Storage;
+﻿using Goiar.Simple.Cqrs.sample.aspnetcore.Storage;
 using Goiar.Simple.Cqrs.Queries;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace goiar.simple.cqrs.sample.aspnetcore.Queries
+namespace Goiar.Simple.Cqrs.sample.aspnetcore.Queries
 {
     public class WeatherQueryHandler :
         IQueryHandler<IList<Weather>, GetAllWeatherQuery>,

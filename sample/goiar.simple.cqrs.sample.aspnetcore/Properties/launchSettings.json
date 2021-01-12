@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "goiar.simple.cqrs.sample.aspnetcore": {
+    "Goiar.Simple.Cqrs.sample.aspnetcore": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

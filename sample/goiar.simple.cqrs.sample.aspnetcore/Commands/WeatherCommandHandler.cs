@@ -1,8 +1,8 @@
-﻿using goiar.simple.cqrs.sample.aspnetcore.Storage;
+﻿using Goiar.Simple.Cqrs.sample.aspnetcore.Storage;
 using Goiar.Simple.Cqrs.Commands;
 using System.Threading.Tasks;
 
-namespace goiar.simple.cqrs.sample.aspnetcore.Commands
+namespace Goiar.Simple.Cqrs.sample.aspnetcore.Commands
 {
     public class WeatherCommandHandler : ICommandHandler<Weather, CreateWeatherCommand>
     {

@@ -1,7 +1,7 @@
 ﻿using Goiar.Simple.Cqrs.Queries;
 using System;
 
-namespace goiar.simple.cqrs.sample.aspnetcore.Queries
+namespace Goiar.Simple.Cqrs.sample.aspnetcore.Queries
 {
     public class GetWeatherByIdQuery : IQuery
     {

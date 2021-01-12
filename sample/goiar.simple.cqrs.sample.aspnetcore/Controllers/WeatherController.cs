@@ -1,6 +1,6 @@
-﻿using goiar.simple.cqrs.sample.aspnetcore.Commands;
-using goiar.simple.cqrs.sample.aspnetcore.Model;
-using goiar.simple.cqrs.sample.aspnetcore.Queries;
+﻿using Goiar.Simple.Cqrs.sample.aspnetcore.Commands;
+using Goiar.Simple.Cqrs.sample.aspnetcore.Model;
+using Goiar.Simple.Cqrs.sample.aspnetcore.Queries;
 using Goiar.Simple.Cqrs.Commands;
 using Goiar.Simple.Cqrs.Queries;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace goiar.simple.cqrs.sample.aspnetcore.Controllers
+namespace Goiar.Simple.Cqrs.sample.aspnetcore.Controllers
 {
     [ApiController]
     [Route("[controller]")]

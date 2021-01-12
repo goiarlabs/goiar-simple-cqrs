@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using goiar.simple.cqrs.sample.aspnetcore.Storage;
+using Goiar.Simple.Cqrs.sample.aspnetcore.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace goiar.simple.cqrs.sample.aspnetcore
+namespace Goiar.Simple.Cqrs.sample.aspnetcore
 {
     public class Startup
     {
@@ -37,7 +37,7 @@ namespace goiar.simple.cqrs.sample.aspnetcore
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "goiar.simple.cqrs.sample.aspnetcore", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Goiar.Simple.Cqrs.sample.aspnetcore", Version = "v1" });
             });
         }
 
@@ -48,7 +48,7 @@ namespace goiar.simple.cqrs.sample.aspnetcore
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "goiar.simple.cqrs.sample.aspnetcore v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Goiar.Simple.Cqrs.sample.aspnetcore v1"));
             }
 
             app.UseHttpsRedirection();

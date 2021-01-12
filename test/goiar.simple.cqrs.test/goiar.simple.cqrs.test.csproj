@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\goiar.simple.cqrs\goiar.simple.cqrs.csproj" />
+    <ProjectReference Include="..\..\src\Goiar.Simple.Cqrs\Goiar.Simple.Cqrs.csproj" />
   </ItemGroup>
 
 </Project>

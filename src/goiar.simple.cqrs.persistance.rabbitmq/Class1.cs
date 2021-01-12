@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace goiar.simple.cqrs.persistance.rabbitmq
+namespace Goiar.Simple.Cqrs.persistance.rabbitmq
 {
     public class Class1
     {

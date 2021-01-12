@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace goiar.simple.cqrs.sample.aspnetcore.Model
+namespace Goiar.Simple.Cqrs.sample.aspnetcore.Model
 {
     public class WheatherRequest
     {

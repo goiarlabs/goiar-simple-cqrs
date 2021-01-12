@@ -1,6 +1,6 @@
 using System;
 
-namespace goiar.simple.cqrs.sample.aspnetcore
+namespace Goiar.Simple.Cqrs.sample.aspnetcore
 {
     public class Weather
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace goiar.simple.cqrs.sample.aspnetcore.Storage
+namespace Goiar.Simple.Cqrs.sample.aspnetcore.Storage
 {
     public class InmemoryDb
     {

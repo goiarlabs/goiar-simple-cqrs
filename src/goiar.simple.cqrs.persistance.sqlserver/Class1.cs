@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace goiar.simple.cqrs.persistance.sqlserver
+namespace Goiar.Simple.Cqrs.persistance.sqlserver
 {
     public class Class1
     {

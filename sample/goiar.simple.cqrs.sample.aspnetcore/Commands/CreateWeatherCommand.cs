@@ -1,7 +1,7 @@
 ﻿using Goiar.Simple.Cqrs.Commands;
 using System;
 
-namespace goiar.simple.cqrs.sample.aspnetcore.Commands
+namespace Goiar.Simple.Cqrs.sample.aspnetcore.Commands
 {
     public class CreateWeatherCommand : ICommand<Weather>
     {
