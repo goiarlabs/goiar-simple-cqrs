@@ -73,13 +73,11 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var command = new FakeSimpleCommand("Im a command c:");
 
-            var serializedCommand = JsonConvert.SerializeObject(command, _settings);
-
             var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
 
             @event.SetCommand<WeirdVoid, FakeSimpleCommand>(command);
 
-            Assert.Equal(serializedCommand, @event.Content);
+            Assert.Equal(command, @event.Content);
         }
 
         #endregion
@@ -91,13 +89,11 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var ex = new Exception("Im can make your code break c:");
 
-            var serializedEx = JsonConvert.SerializeObject(ex, _settings);
-
             var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
 
             @event.Failed(ex);
 
-            Assert.Equal(serializedEx, @event.Result);
+            Assert.Equal(ex, @event.Result);
         }
 
         #endregion
@@ -109,13 +105,11 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var response = new FakeCommandResponse("Im a good response =D");
 
-            var serializedresponse = JsonConvert.SerializeObject(response, _settings);
-
             var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
 
             @event.Success(response);
 
-            Assert.Equal(serializedresponse, @event.Result);
+            Assert.Equal(response, @event.Result);
         }
 
         [Fact]

@@ -1,14 +1,13 @@
-﻿using Moq;
-using Goiar.Simple.Cqrs.Commands;
-using Goiar.Simple.Cqrs.Entities;
+﻿using Goiar.Simple.Cqrs.Commands;
 using Goiar.Simple.Cqrs.Queries;
+using Goiar.Simple.Cqrs.test.Fakes.Queues;
 using Goiar.Simple.Cqrs.Tests.Fakes;
 using Goiar.Simple.Cqrs.Tests.Fakes.Commands;
 using Goiar.Simple.Cqrs.UserIdentities;
+using Moq;
 using System;
 using System.Threading.Tasks;
 using Xunit;
-using Goiar.Simple.Cqrs.test.Fakes.Queues;
 
 namespace Goiar.Simple.Cqrs.Tests
 {
@@ -126,7 +125,7 @@ namespace Goiar.Simple.Cqrs.Tests
             Assert.Contains(_eventQueue.InternalQueue,
                 e => e.CommandName == "Fake Simple Command"
                     && (e.Content as FakeSimpleCommand).Message == command.Message
-                    && (e.Result as FakeCommandResponse).Message == responseMessage);
+                    && (e.Result as Exception).Message == responseMessage);
         }
 
         [Fact]
@@ -174,7 +173,7 @@ namespace Goiar.Simple.Cqrs.Tests
 
             Assert.Contains(_eventQueue.InternalQueue,
                 e => e.CommandName == "Fake Response Command"
-                    && (e.Content as FakeSimpleCommand).Message == command.Message
+                    && (e.Content as FakeResponseCommand).Message == command.Message
                     && (e.Result as FakeCommandResponse).Message == command.Message
                     && e.CreatedBy == "NoId");
         }
@@ -194,7 +193,7 @@ namespace Goiar.Simple.Cqrs.Tests
 
             Assert.Contains(_eventQueue.InternalQueue,
                 e => e.CommandName == "Fake Response Command"
-                    && (e.Content as FakeSimpleCommand).Message == command.Message
+                    && (e.Content as FakeResponseCommand).Message == command.Message
                     && (e.Result as FakeCommandResponse).Message == command.Message
                     && e.CreatedBy == createdBy);
         }
@@ -233,7 +232,7 @@ namespace Goiar.Simple.Cqrs.Tests
 
             Assert.Contains(_eventQueue.InternalQueue,
                 e => e.CommandName == "Fake Response Command"
-                    && (e.Content as FakeSimpleCommand).Message == command.Message
+                    && (e.Content as FakeResponseCommand).Message == command.Message
                     && (e.Result as Exception).Message == resultMessage);
         }
 
