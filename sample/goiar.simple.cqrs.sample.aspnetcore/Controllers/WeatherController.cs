@@ -54,5 +54,18 @@ namespace Goiar.Simple.Cqrs.sample.aspnetcore.Controllers
 
             return CreatedAtAction("GetById", new { id = result.Id }, result);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, WheatherRequest request)
+        {
+            await _commandSender.Send(
+                new UpdateWeatherCommand(
+                    id,
+                    request.Date,
+                    request.Summary,
+                    request.TemperatureC));
+
+            return NoContent();
+        }
     }
 }
