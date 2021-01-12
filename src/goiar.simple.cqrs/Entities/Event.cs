@@ -90,11 +90,11 @@ namespace Goiar.Simple.Cqrs.Entities
         public object Content { get; private set; }
 
         /// <summary>
-        /// Serialized result of the command
+        /// Result of the command
         /// "Success" if void
         /// Serialized exception if failed
         /// </summary>
-        public string Result { get; private set; }
+        public object Result { get; private set; }
 
         /// <summary>
         /// The time it took to proccess
@@ -125,7 +125,7 @@ namespace Goiar.Simple.Cqrs.Entities
         /// Fills the result with the exception that made this fail
         /// </summary>
         /// <param name="ex"></param>
-        public void Failed(Exception ex) => Result = JsonConvert.SerializeObject(ex, _serializerSettings);
+        public void Failed(Exception ex) => Result = ex;
 
         /// <summary>
         /// Sets the result with 
@@ -141,7 +141,7 @@ namespace Goiar.Simple.Cqrs.Entities
             }
             else
             {
-                Result = JsonConvert.SerializeObject(response, _serializerSettings);
+                Result = response;
             }
         }
 
