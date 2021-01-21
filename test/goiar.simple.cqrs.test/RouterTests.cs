@@ -21,7 +21,7 @@ namespace Goiar.Simple.Cqrs.Tests
         private readonly Router _classUnderTest;
 
         #endregion
-
+        
         #region Constructor
 
         public RouterTests()

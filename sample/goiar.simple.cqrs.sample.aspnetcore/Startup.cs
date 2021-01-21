@@ -26,6 +26,7 @@ namespace Goiar.Simple.Cqrs.sample.aspnetcore
             services.AddCqrs(a => 
                 a.UseStaticUserIdentity("coso")
                 .AddLoggerEventStore());
+
             services.AddCommandHandlersFromAssemblyOf(typeof(Startup));
             services.AddQueryHandlersFromAssemblyOf(typeof(Startup));
 

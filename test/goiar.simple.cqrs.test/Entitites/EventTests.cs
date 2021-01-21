@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using Goiar.Simple.Cqrs.Entities;
+﻿using Goiar.Simple.Cqrs.Entities;
 using Goiar.Simple.Cqrs.Tests.Fakes;
+using Newtonsoft.Json;
 using System;
 using Xunit;
 
@@ -47,7 +47,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var command = new FakeSimpleCommand("Im a command c:");
 
-            var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
+            var @event = new Event("CreatedBy", Guid.NewGuid());
 
             @event.SetCommand<WeirdVoid, FakeSimpleCommand>(command);
 
@@ -60,7 +60,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var command = new FakeSimpleCommand("Im a command c:");
 
-            var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
+            var @event = new Event("CreatedBy", Guid.NewGuid());
 
             @event.SetCommand<WeirdVoid, FakeSimpleCommand>(command);
 
@@ -73,7 +73,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var command = new FakeSimpleCommand("Im a command c:");
 
-            var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
+            var @event = new Event("CreatedBy", Guid.NewGuid());
 
             @event.SetCommand<WeirdVoid, FakeSimpleCommand>(command);
 
@@ -89,7 +89,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var ex = new Exception("Im can make your code break c:");
 
-            var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
+            var @event = new Event("CreatedBy", Guid.NewGuid());
 
             @event.Failed(ex);
 
@@ -105,7 +105,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         {
             var response = new FakeCommandResponse("Im a good response =D");
 
-            var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
+            var @event = new Event("CreatedBy", Guid.NewGuid());
 
             @event.Success(response);
 
@@ -115,7 +115,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
         [Fact]
         public void Success_ShouldSetResultInSuccess_WithAWeirdVoid()
         {
-            var @event = new Event("CreatedBy", Guid.NewGuid(), _settings);
+            var @event = new Event("CreatedBy", Guid.NewGuid());
 
             @event.Success(WeirdVoid.Value);
 

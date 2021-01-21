@@ -2,6 +2,7 @@
 using Goiar.Simple.Cqrs.Commands;
 using System;
 using System.Text;
+using System.Diagnostics;
 
 namespace Goiar.Simple.Cqrs.Entities
 {
@@ -12,7 +13,7 @@ namespace Goiar.Simple.Cqrs.Entities
     {
         #region Fields
 
-        private readonly JsonSerializerSettings _serializerSettings;
+        private readonly Stopwatch _stopWatch;
 
         #endregion
 
@@ -31,23 +32,14 @@ namespace Goiar.Simple.Cqrs.Entities
         /// <param name="createdBy"> An identifier of the person that created this event </param>
         /// <param name="correlationId"> A batch identifier </param>
         /// <param name="serializerSettings"> If null instanciates a new setting ignoring loop references and with idented format </param>
-        public Event(string createdBy, Guid correlationId, JsonSerializerSettings serializerSettings = null)
+        public Event(string createdBy, Guid correlationId)
         {
-            if (serializerSettings == null)
-            {
-                serializerSettings = new JsonSerializerSettings()
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                    Formatting = Formatting.Indented
-                };
-            }
-
-            _serializerSettings = serializerSettings;
-
             Id = Guid.NewGuid();
             CreatedBy = createdBy;
             CreatedOn = DateTime.UtcNow;
             CorrelationId = correlationId;
+
+            _stopWatch = new Stopwatch();
         }
 
         #endregion
@@ -97,7 +89,7 @@ namespace Goiar.Simple.Cqrs.Entities
         public object Result { get; private set; }
 
         /// <summary>
-        /// The time it took to proccess
+        /// The time it took to proccess the command
         /// </summary>
         public TimeSpan TimeElapsed { get; private set; }
 
@@ -119,13 +111,19 @@ namespace Goiar.Simple.Cqrs.Entities
             EntityId = typedCommand.EntityId;
             Content = typedCommand;
             CommandName = SeparatePascalCase(command.GetType().Name);
+            _stopWatch.Start();
         }
 
         /// <summary>
         /// Fills the result with the exception that made this fail
         /// </summary>
         /// <param name="ex"></param>
-        public void Failed(Exception ex) => Result = ex;
+        public void Failed(Exception ex)
+        {
+            Result = ex;
+            _stopWatch.Stop();
+            TimeElapsed = _stopWatch.Elapsed;
+        }
 
         /// <summary>
         /// Sets the result with 
@@ -143,6 +141,9 @@ namespace Goiar.Simple.Cqrs.Entities
             {
                 Result = response;
             }
+
+            _stopWatch.Stop();
+            TimeElapsed = _stopWatch.Elapsed;
         }
 
         #endregion
@@ -202,7 +203,7 @@ namespace Goiar.Simple.Cqrs.Entities
         /// <param name="createdBy"> An identifier of the person that created this event </param>
         /// <param name="correlationId"> A batch identifier </param>
         /// <param name="serializerSettings"> If null instanciates a new setting ignoring loop references and with idented format </param>
-        public Event(string createdBy, Guid correlationId, JsonSerializerSettings serializerSettings = null) : base(createdBy, correlationId, serializerSettings)
+        public Event(string createdBy, Guid correlationId, JsonSerializerSettings serializerSettings = null) : base(createdBy, correlationId)
         {
         }
 

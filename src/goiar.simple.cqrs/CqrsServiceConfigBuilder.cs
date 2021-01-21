@@ -23,6 +23,12 @@ namespace Goiar.Simple.Cqrs
 
         #endregion
 
+        #region Properties
+
+        public IServiceCollection Services => _services; 
+
+        #endregion
+
         #region Identity catcher strategies
 
         /// <summary>

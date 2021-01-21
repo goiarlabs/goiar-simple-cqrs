@@ -1,5 +1,6 @@
 ﻿using Goiar.Simple.Cqrs.Data;
 using Goiar.Simple.Cqrs.Data.EntityBuilders;
+using Goiar.Simple.Cqrs.persistance.sqlserver;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,10 +14,11 @@ namespace Goiar.Simple.Cqrs
         /// </summary>
         /// <param name="dbcontextBuild"></param>
         /// <returns></returns>
-        public static IServiceCollection UseDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> dbcontextBuild)
+        public static CqrsServiceConfigBuilder UseDbContext(this CqrsServiceConfigBuilder builder, Action<DbContextOptionsBuilder> dbcontextBuild)
         {
-            services.AddDbContext<IEventStoreDbContext, EventStoreDbContext>(dbcontextBuild);
-            return services;
+            builder.Services.AddDbContext<IEventStoreDbContext, EventStoreDbContext>(dbcontextBuild);
+            builder.AddCustomEventStore<SqlServerEventStore>();
+            return builder;
         }
     }
 }
