@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Name="fabric:/goiar_simple_cqrsApplication" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <Parameter Name="goiar.simple.cqrs.sample.aspnetcore.rabbitmq.sub_InstanceCount" Value="1" />
+    <Parameter Name="goiar.simple.cqrs.sample.aspnetcore.rabbitmq.sub_Isolation" Value="default" />
+  </Parameters>
+</Application>

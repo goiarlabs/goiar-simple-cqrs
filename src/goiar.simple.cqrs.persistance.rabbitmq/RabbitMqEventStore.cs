@@ -18,12 +18,12 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq
 
         #region Ctor
 
-        public RabbitMqEventStore(IBus bus, QueueConfig queueConfig)
+        public RabbitMqEventStore(QueueConfig queueConfig, IBus bus = null)
         {
             _bus = bus;
             _queueConfig = queueConfig;
 
-            if (bus is null || !bus.Advanced.IsConnected)
+            if (bus is null)
             {
                 _bus = RabbitHutch.CreateBus(queueConfig.ConnectionString);
             }
@@ -36,6 +36,7 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq
 
         public async Task Save(Event @event)
         {
+
             if (string.IsNullOrEmpty(_queueConfig.Topic))
             {
                 await _bus.PubSub.PublishAsync(@event);

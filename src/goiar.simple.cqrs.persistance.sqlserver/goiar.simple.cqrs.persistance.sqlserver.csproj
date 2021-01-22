@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Goiar.Simple.Cqrs\Goiar.Simple.Cqrs.csproj" />
+    <ProjectReference Include="..\goiar.simple.cqrs\goiar.simple.cqrs.csproj" />
   </ItemGroup>
 
 </Project>

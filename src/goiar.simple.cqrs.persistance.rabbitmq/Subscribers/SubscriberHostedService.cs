@@ -9,7 +9,61 @@ using System.Threading.Tasks;
 
 namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
 {
-    public class SubscriberHostedService : BackgroundService
+    public class SubscriberHostedService : IHostedService
+    {
+        #region Fields
+
+        private readonly QueueConfig _queueConfig;
+        private readonly IServiceProvider _services;
+        private readonly IBus _bus;
+
+        private ISubscriptionResult _subscriptionResult;
+
+        #endregion
+
+        #region Constructors
+
+        public SubscriberHostedService(QueueConfig queueConfig, IServiceProvider serviceProvider, IBus bus = null)
+        {
+            _bus = bus;
+            _queueConfig = queueConfig;
+
+            if (bus is null)
+            {
+                _bus = RabbitHutch.CreateBus(queueConfig.ConnectionString);
+            }
+
+            _services = serviceProvider;
+        }
+
+        #endregion
+
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            _subscriptionResult = await _bus.PubSub.SubscribeAsync<Event>(
+                _queueConfig.SubscriptionIdentifier,
+                HandleEvent,
+                cancellationToken);
+        }
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            _subscriptionResult?.Dispose();
+            _bus?.Dispose();
+            return Task.CompletedTask;
+        }
+
+        private Task HandleEvent(Event @event)
+        {
+            using var scoped = _services.CreateScope();
+
+            var eventHandler = scoped.ServiceProvider.GetService<IEventHandler>();
+
+            return eventHandler.Handle(@event);
+        }
+    }
+
+
+    /*public class SubscriberHostedService : BackgroundService
     {
         #region Fields
         
@@ -23,7 +77,7 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
 
         #region Constructors
 
-        public SubscriberHostedService(IBus bus, QueueConfig queueConfig, IServiceProvider serviceProvider)
+        public SubscriberHostedService(QueueConfig queueConfig, IServiceProvider serviceProvider, IBus bus = null)
         {
             _bus = bus;
             _queueConfig = queueConfig;
@@ -50,8 +104,8 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
 
         public override void Dispose()
         {
-            _subscriptionResult.Dispose();
-            _bus.Dispose();
+            _subscriptionResult?.Dispose();
+            _bus?.Dispose();
             base.Dispose();
         }
 
@@ -69,5 +123,5 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
         } 
 
         #endregion
-    }
+    }*/
 }

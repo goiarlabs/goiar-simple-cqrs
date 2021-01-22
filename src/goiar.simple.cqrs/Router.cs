@@ -50,7 +50,7 @@ namespace Goiar.Simple.Cqrs
             where TResponse : class
             where TCommand: ICommand<TResponse>
         {
-            var @event = new Event<TResponse>(
+            var @event = new Event(
                 _userIdentityHolder.UserId ?? "NoId",
                 _correlationId);
             @event.SetCommand<TResponse, TCommand>(message);

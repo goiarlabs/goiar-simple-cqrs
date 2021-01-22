@@ -9,10 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="EasyNetQ" Version="6.3.1" />
+    <PackageReference Include="EasyNetQ.DI.Microsoft" Version="6.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Goiar.Simple.Cqrs\Goiar.Simple.Cqrs.csproj" />
+    <ProjectReference Include="..\goiar.simple.cqrs\goiar.simple.cqrs.csproj" />
   </ItemGroup>
 
 </Project>
