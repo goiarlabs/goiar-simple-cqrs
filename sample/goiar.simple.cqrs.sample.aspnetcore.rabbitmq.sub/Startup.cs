@@ -26,7 +26,8 @@ namespace goiar.simple.cqrs.sample.aspnetcore.rabbitmq.sub
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "goiar.simple.cqrs.sample.aspnetcore.rabbitmq.sub", Version = "v1" });
             });
 
-            services.AddEventSubscriber<LoggerEventHandler>(Configuration.GetValue<string>("rabbitmq:connectionString"));
+            services.AddEventSubscriber<LoggerEventHandler>(
+                Configuration.GetValue<string>("rabbitmq:connectionString"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

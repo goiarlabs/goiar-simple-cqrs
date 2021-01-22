@@ -10,13 +10,12 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Extensions
         public static CqrsServiceConfigBuilder UseRabbitMq(this CqrsServiceConfigBuilder builder, string connectionString, string topicName = null)
         {
             builder.Services.AddSingleton(new QueueConfig(connectionString, topicName));
-            builder.Services.RegisterEasyNetQ(connectionString, a => 
+            builder.Services.RegisterEasyNetQ(connectionString, a =>
                 a.Register<ISerializer>(new JsonSerializer(new Newtonsoft.Json.JsonSerializerSettings
                 {
                     TypeNameHandling = Newtonsoft.Json.TypeNameHandling.None
                 }))
             );
-            //builder.Services.AddSingleton(RabbitHutch.CreateBus(connectionString));
 
             builder.AddCustomEventStore<RabbitMqEventStore>();
 
@@ -32,7 +31,7 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Extensions
         {
             var config = new QueueConfig(connectionString, topicName, subscriptionIdentifier);
             service.AddSingleton(config);
-            service.AddSingleton(RabbitHutch.CreateBus(connectionString));
+            service.RegisterEasyNetQ(connectionString);
             service.AddTransient(typeof(IEventHandler), typeof(T));
 
             return service;

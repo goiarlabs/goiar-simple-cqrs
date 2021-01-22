@@ -49,49 +49,49 @@ namespace Goiar.Simple.Cqrs.Entities
         /// <summary>
         /// Event's identifier
         /// </summary>
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// User that created or submited this event
         /// </summary>
-        public string CreatedBy { get; private set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
         /// Date of summit
         /// </summary>
-        public DateTime CreatedOn { get; private set; }
+        public DateTime CreatedOn { get; set; }
 
         /// <summary>
         /// Batch's identifier
         /// </summary>
-        public Guid CorrelationId { get; private set; }
+        public Guid CorrelationId { get; set; }
 
         /// <summary>
         /// Affected Entity's  identifier
         /// </summary>
-        public Guid EntityId { get; private set; }
+        public Guid EntityId { get; set; }
 
         /// <summary>
         /// Name of the command
         /// </summary>
-        public string CommandName { get; private set; }
+        public string CommandName { get; set; }
 
         /// <summary>
         /// Command's content
         /// </summary>
-        public object Content { get; private set; }
+        public object Content { get; set; }
 
         /// <summary>
         /// Result of the command
         /// "Success" if void
         /// Serialized exception if failed
         /// </summary>
-        public object Result { get; private set; }
+        public object Result { get; set; }
 
         /// <summary>
         /// The time it took to proccess the command
         /// </summary>
-        public TimeSpan TimeElapsed { get; private set; }
+        public TimeSpan TimeElapsed { get; set; }
 
         #endregion
 
