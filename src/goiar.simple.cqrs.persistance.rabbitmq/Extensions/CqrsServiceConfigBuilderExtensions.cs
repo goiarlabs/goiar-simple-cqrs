@@ -5,8 +5,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Extensions
 {
+    /// <summary>
+    /// CQRS Config Extensions for rabbit mq implementation
+    /// </summary>
     public static class CqrsServiceConfigBuilderExtensions
     {
+        /// <summary>
+        /// Uses Rabit mq as a the persistance
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="connectionString"></param>
+        /// <param name="topicName"></param>
+        /// <returns></returns>
         public static CqrsServiceConfigBuilder UseRabbitMq(this CqrsServiceConfigBuilder builder, string connectionString, string topicName = null)
         {
             builder.Services.AddSingleton(new QueueConfig(connectionString, topicName));
@@ -22,6 +32,15 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Extensions
             return builder;
         }
 
+        /// <summary>
+        /// Subscribes an implemented <see cref="IEventHandler"/> to be the queue subscriber
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="service"></param>
+        /// <param name="connectionString"></param>
+        /// <param name="topicName"></param>
+        /// <param name="subscriptionIdentifier"></param>
+        /// <returns></returns>
         public static IServiceCollection AddEventSubscriber<T>(
             this IServiceCollection service,
             string connectionString,

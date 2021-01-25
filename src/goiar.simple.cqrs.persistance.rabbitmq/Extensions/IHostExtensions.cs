@@ -7,9 +7,18 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.Hosting
 {
+    /// <summary>
+    /// Adds methods to <see cref="IHost"/>
+    /// </summary>
     public static class IHostExtensions
     {
-        public static IHost SubscribeToCqrsQueues(this IHost host)
+
+        /// <summary>
+        /// Adds the queues subscriber to accept new messages from the queue
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public static IHost SubscribeToCqrsQueue(this IHost host)
         {
             var bus = host.Services.GetService(typeof(IBus)) as IBus;
 

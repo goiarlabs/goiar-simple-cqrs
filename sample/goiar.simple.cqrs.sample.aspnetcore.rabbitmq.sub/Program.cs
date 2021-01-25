@@ -7,7 +7,7 @@ namespace goiar.simple.cqrs.sample.aspnetcore.rabbitmq.sub
     {
         public static void Main(string[] args) =>
             CreateHostBuilder(args).Build()
-                .SubscribeToCqrsQueues()
+                .SubscribeToCqrsQueue()
                 .Run();
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

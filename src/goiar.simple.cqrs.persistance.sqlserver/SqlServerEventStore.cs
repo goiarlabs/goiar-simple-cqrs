@@ -7,17 +7,26 @@ using System.Threading.Tasks;
 
 namespace Goiar.Simple.Cqrs.persistance.sqlserver
 {
+    /// <summary>
+    /// <see cref="IEventStore"/> Implementation for SqlServer library
+    /// </summary>
     public class SqlServerEventStore : IEventStore
     {
         private readonly ILogger<SqlServerEventStore> _logger;
         private readonly IEventStoreDbContext _dbContext;
 
+        /// <summary>
+        /// Creates a new <see cref="SqlServerEventStore"/>
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="dbContext"></param>
         public SqlServerEventStore(ILogger<SqlServerEventStore> logger, IEventStoreDbContext dbContext)
         {
             _logger = logger;
             _dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task Save(Event @event)
         {
             try
