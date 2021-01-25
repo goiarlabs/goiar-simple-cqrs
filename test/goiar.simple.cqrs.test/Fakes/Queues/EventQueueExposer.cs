@@ -1,5 +1,6 @@
 ﻿using Goiar.Simple.Cqrs.Entities;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Goiar.Simple.Cqrs.test.Fakes.Queues
 {
@@ -7,5 +8,7 @@ namespace Goiar.Simple.Cqrs.test.Fakes.Queues
     {
 
         public IEnumerable<Event> InternalQueue => _events;
+
+        public SemaphoreSlim Signal => _signal;
     }
 }

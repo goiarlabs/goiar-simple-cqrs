@@ -9,7 +9,7 @@ namespace Goiar.Simple.Cqrs.Entities
         #region Fields
 
         protected ConcurrentQueue<Event> _events = new ConcurrentQueue<Event>();
-        private SemaphoreSlim _signal = new SemaphoreSlim(0);
+        protected SemaphoreSlim _signal = new SemaphoreSlim(0);
 
         #endregion
 

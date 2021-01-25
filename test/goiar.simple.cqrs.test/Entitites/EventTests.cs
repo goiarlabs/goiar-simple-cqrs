@@ -96,6 +96,20 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
             Assert.Equal(ex, @event.Result);
         }
 
+        [Fact]
+        public void Failed_ShouldSetTimeElapsed()
+        {
+            var ex = new Exception("Im can make your code break c:");
+            var command = new FakeSimpleCommand("Im a command c:");
+
+            var @event = new Event("CreatedBy", Guid.NewGuid());
+            @event.SetCommand<WeirdVoid, FakeSimpleCommand>(command);
+
+            @event.Failed(ex);
+
+            Assert.True(@event.TimeElapsed.Ticks > 0);
+        }
+
         #endregion
 
         #region Success Tests
@@ -120,6 +134,18 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
             @event.Success(WeirdVoid.Value);
 
             Assert.Equal("Success", @event.Result);
+        }
+        
+        [Fact]
+        public void Success_ShouldSetTimeElapsed()
+        {
+            var command = new FakeSimpleCommand("Im a command c:");
+            var @event = new Event("CreatedBy", Guid.NewGuid());
+
+            @event.SetCommand<WeirdVoid, FakeSimpleCommand>(command);
+            @event.Success(WeirdVoid.Value);
+
+            Assert.True(@event.TimeElapsed.TotalMilliseconds > 0);
         }
 
         #endregion

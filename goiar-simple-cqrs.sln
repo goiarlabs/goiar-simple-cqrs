@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goiar.Simple.Cqrs.persistan
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{80DF8160-1CE1-4660-85A0-C368E5BDAF44}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goiar.Simple.Cqrs.sample.aspnetcore", "sample\Goiar.Simple.Cqrs.sample.aspnetcore\Goiar.Simple.Cqrs.sample.aspnetcore.csproj", "{042CB9E1-D817-434D-9293-02FF2FC9C5F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "goiar.simple.cqrs.sample.aspnetcore", "sample\Goiar.Simple.Cqrs.sample.aspnetcore\goiar.simple.cqrs.sample.aspnetcore.csproj", "{042CB9E1-D817-434D-9293-02FF2FC9C5F6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "goiar.simple.cqrs.sample.aspnetcore.rabbitmq.pub", "sample\goiar.simple.cqrs.sample.aspnetcore.rabbitmq.pub\goiar.simple.cqrs.sample.aspnetcore.rabbitmq.pub.csproj", "{46C79DE9-327E-47E6-A935-84E6E3958657}"
 EndProject

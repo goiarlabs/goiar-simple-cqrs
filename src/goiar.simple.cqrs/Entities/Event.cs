@@ -1,15 +1,14 @@
-﻿using Newtonsoft.Json;
-using Goiar.Simple.Cqrs.Commands;
+﻿using Goiar.Simple.Cqrs.Commands;
 using System;
-using System.Text;
 using System.Diagnostics;
+using System.Text;
 
 namespace Goiar.Simple.Cqrs.Entities
 {
     /// <summary>
     /// Class used to persist commands into the event store
     /// </summary>
-    public class Event 
+    public class Event
     {
         #region Fields
 
@@ -103,7 +102,7 @@ namespace Goiar.Simple.Cqrs.Entities
         /// <typeparam name="TResponse"></typeparam>
         /// <typeparam name="TCommand"></typeparam>
         /// <param name="command"></param>
-        public void SetCommand<TResponse, TCommand>(object command) 
+        public void SetCommand<TResponse, TCommand>(object command)
             where TCommand : ICommand<TResponse>
             where TResponse : class
         {
@@ -185,35 +184,4 @@ namespace Goiar.Simple.Cqrs.Entities
 
         #endregion
     }
-
-    public class Event<TResponse> : Event where TResponse : class
-    {
-        #region Constructors
-
-        /// <summary>
-        /// EF Constructor
-        /// Done because we have some transformation on domain's constructor / dotnet 2.1 compatibility
-        /// </summary>
-        protected Event() : base() { }
-
-        /// <summary>
-        /// Instanciates a <see cref="Event"/>
-        /// Serializes the command into the content
-        /// </summary>
-        /// <param name="createdBy"> An identifier of the person that created this event </param>
-        /// <param name="correlationId"> A batch identifier </param>
-        /// <param name="serializerSettings"> If null instanciates a new setting ignoring loop references and with idented format </param>
-        public Event(string createdBy, Guid correlationId, JsonSerializerSettings serializerSettings = null) : base(createdBy, correlationId)
-        {
-        }
-
-        #endregion
-
-        #region Properties
-
-        public ICommand<TResponse> Command => Content as ICommand<TResponse>;
-
-        #endregion
-    }
-
 }
