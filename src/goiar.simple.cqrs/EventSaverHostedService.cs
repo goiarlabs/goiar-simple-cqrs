@@ -47,6 +47,11 @@ namespace Goiar.Simple.Cqrs
                     using (var scope = _serviceProvider.CreateScope())
                     {
                         var eventStore = scope.ServiceProvider.GetService<IEventStore>();
+                        if(eventStore is null)
+                        {
+                            throw new Exception("No event store was found");
+                        }
+
                         await eventStore.Save(command);
                     }
                 }
