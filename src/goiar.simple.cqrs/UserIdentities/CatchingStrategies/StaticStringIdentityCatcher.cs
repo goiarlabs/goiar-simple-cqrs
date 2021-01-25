@@ -2,6 +2,9 @@
 
 namespace Goiar.Simple.Cqrs.UserIdentities.CatchingStrategies
 {
+    /// <summary>
+    /// Returns always the same string
+    /// </summary>
     public class StaticStringIdentityCatcher : IUserIdentityCatcherStrategy
     {
         #region Fields

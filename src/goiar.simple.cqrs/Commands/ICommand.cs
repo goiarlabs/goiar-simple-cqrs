@@ -12,6 +12,9 @@ namespace Goiar.Simple.Cqrs.Commands
     /// </summary>
     public interface ICommand<out TResponse>
     {
+        /// <summary>
+        /// Identifier of the entity that needs to be processed on this command
+        /// </summary>
         Guid EntityId { get; }
     }
 }

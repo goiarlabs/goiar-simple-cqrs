@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
 {
+    /// <summary>
+    /// A hosted service that subscribes to the queue and send it to the <see cref="IEventHandler"/>
+    /// </summary>
     public class SubscriberHostedService : IHostedService
     {
         #region Fields
@@ -23,6 +26,12 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
 
         #region Constructors
 
+        /// <summary>
+        /// Creates a new <see cref="SubscriberHostedService"/>
+        /// </summary>
+        /// <param name="queueConfig"></param>
+        /// <param name="serviceProvider"></param>
+        /// <param name="bus"></param>
         public SubscriberHostedService(QueueConfig queueConfig, IServiceProvider serviceProvider, IBus bus = null)
         {
             _bus = bus;
@@ -38,6 +47,13 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
 
         #endregion
 
+        #region Public methods
+        
+        /// <summary>
+        /// Starts the excecution of the hosted service
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             _subscriptionResult = await _bus.PubSub.SubscribeAsync<Event>(
@@ -45,68 +61,17 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
                 HandleEvent,
                 cancellationToken);
         }
+
+        /// <summary>
+        /// Completes the excecution of the hosted service
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task StopAsync(CancellationToken cancellationToken)
         {
             _subscriptionResult?.Dispose();
             _bus?.Dispose();
             return Task.CompletedTask;
-        }
-
-        private Task HandleEvent(Event @event)
-        {
-            using var scoped = _services.CreateScope();
-
-            var eventHandler = scoped.ServiceProvider.GetService<IEventHandler>();
-
-            return eventHandler.Handle(@event);
-        }
-    }
-
-
-    /*public class SubscriberHostedService : BackgroundService
-    {
-        #region Fields
-        
-        private readonly QueueConfig _queueConfig;
-        private readonly IServiceProvider _services;
-        private readonly IBus _bus;
-
-        private ISubscriptionResult _subscriptionResult;
-
-        #endregion
-
-        #region Constructors
-
-        public SubscriberHostedService(QueueConfig queueConfig, IServiceProvider serviceProvider, IBus bus = null)
-        {
-            _bus = bus;
-            _queueConfig = queueConfig;
-
-            if (bus is null)
-            {
-                _bus = RabbitHutch.CreateBus(queueConfig.ConnectionString);
-            }
-
-            _services = serviceProvider;
-        }
-
-        #endregion
-
-        #region Overrides
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            _subscriptionResult = await _bus.PubSub.SubscribeAsync<Event>(
-                _queueConfig.SubscriptionIdentifier,
-                HandleEvent,
-                stoppingToken);
-        }
-
-        public override void Dispose()
-        {
-            _subscriptionResult?.Dispose();
-            _bus?.Dispose();
-            base.Dispose();
         }
 
         #endregion
@@ -120,8 +85,8 @@ namespace Goiar.Simple.Cqrs.persistance.rabbitmq.Subscribers
             var eventHandler = scoped.ServiceProvider.GetService<IEventHandler>();
 
             return eventHandler.Handle(@event);
-        } 
-
+        }
+        
         #endregion
-    }*/
+    }
 }

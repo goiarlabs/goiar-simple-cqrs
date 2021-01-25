@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Goiar.Simple.Cqrs
 {
+    /// <summary>
+    /// A background services that sends events to save out of the process
+    /// </summary>
     public class EventSaverHostedService : BackgroundService
     {
         #region Fields
@@ -21,6 +24,12 @@ namespace Goiar.Simple.Cqrs
 
         #region Constructor
 
+        /// <summary>
+        /// Creates a new <see cref="EventSaverHostedService"/>
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        /// <param name="eventQueue"></param>
+        /// <param name="logger"></param>
         public EventSaverHostedService(IServiceProvider serviceProvider, EventQueue eventQueue, ILogger<EventSaverHostedService> logger)
         {
             _serviceProvider = serviceProvider;
@@ -33,6 +42,12 @@ namespace Goiar.Simple.Cqrs
 
         #region Overrides
 
+        /// <summary>
+        /// <see cref="BackgroundService"/> Implementation method,
+        /// await till something is enqueued and trys to send it to the <see cref="IEventStore"/> save method
+        /// </summary>
+        /// <param name="stoppingToken">The token that cancels the operation</param>
+        /// <returns></returns>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogTrace($"{nameof(EventSaverHostedService)} started.");
@@ -44,16 +59,14 @@ namespace Goiar.Simple.Cqrs
                     _logger.LogDebug($"{nameof(EventSaverHostedService)} dequeued command with CommandName:" +
                         $"{command.CommandName}.");
 
-                    using (var scope = _serviceProvider.CreateScope())
+                    using var scope = _serviceProvider.CreateScope();
+                    var eventStore = scope.ServiceProvider.GetService<IEventStore>();
+                    if (eventStore is null)
                     {
-                        var eventStore = scope.ServiceProvider.GetService<IEventStore>();
-                        if(eventStore is null)
-                        {
-                            throw new Exception("No event store was found");
-                        }
-
-                        await eventStore.Save(command);
+                        throw new Exception("No event store was found");
                     }
+
+                    await eventStore.Save(command);
                 }
                 catch (Exception ex)
                 {

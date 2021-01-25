@@ -19,6 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// registers the needed implementations and interfaces that Cqrs needs
         /// </summary>
         /// <param name="services">the service collection to set the interfaces and implementations</param>
+        /// <param name="builder">The builder that configures CQRS Services</param>
         /// <returns></returns>
         public static IServiceCollection AddCqrs(
             this IServiceCollection services,

@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Goiar.Simple.Cqrs
 {
+    /// <summary>
+    /// Cqrs builder's configuration
+    /// </summary>
     public class CqrsServiceConfigBuilder
     {
         #region Fields
@@ -16,6 +19,10 @@ namespace Goiar.Simple.Cqrs
 
         #region Constuctor
 
+        /// <summary>
+        /// Creates a new <see cref="CqrsServiceConfigBuilder"/>
+        /// </summary>
+        /// <param name="services"></param>
         public CqrsServiceConfigBuilder(IServiceCollection services)
         {
             _services = services;
@@ -25,6 +32,9 @@ namespace Goiar.Simple.Cqrs
 
         #region Properties
 
+        /// <summary>
+        /// Internal service list (is recomendable to leave it be)
+        /// </summary>
         public IServiceCollection Services => _services; 
 
         #endregion

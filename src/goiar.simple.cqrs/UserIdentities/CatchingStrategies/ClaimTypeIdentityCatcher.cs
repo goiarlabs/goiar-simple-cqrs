@@ -2,6 +2,10 @@
 
 namespace Goiar.Simple.Cqrs.UserIdentities.CatchingStrategies
 {
+    /// <summary>
+    /// An implementation of <see cref="IUserIdentityCatcherStrategy"/>
+    /// That holds the identity given a claim type.
+    /// </summary>
     public class ClaimTypeIdentityCatcher : IUserIdentityCatcherStrategy
     {
         private readonly string _claimTypeName;

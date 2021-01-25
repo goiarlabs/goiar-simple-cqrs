@@ -30,7 +30,7 @@ namespace Goiar.Simple.Cqrs
         /// Implements <see cref="ICommandSender"/>
         /// </summary>
         /// <param name="serviceProvider"></param>
-        /// <param name="dbContext"></param>
+        /// <param name="eventQueue"></param>
         /// <param name="userIdentityHolder"></param>
         /// <param name="correlationId"></param>
         public Router(IServiceProvider serviceProvider, EventQueue eventQueue, IUserIdentityHolder userIdentityHolder, Guid? correlationId = null)

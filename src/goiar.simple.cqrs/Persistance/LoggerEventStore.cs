@@ -13,12 +13,20 @@ namespace Goiar.Simple.Cqrs.Persistance
     {
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// Creates a new <see cref="LoggerEventStore"/>
+        /// </summary>
+        /// <param name="logger"></param>
         public LoggerEventStore(ILogger<LoggerEventStore> logger)
         {
             _logger = logger;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Logs the event onto a <see cref="ILogger"/>
+        /// </summary>
+        /// <param name="event"></param>
+        /// <returns></returns>
         public Task Save(Event @event)
         {
             _logger.LogInformation($"Recieved an event with command name : {@event.CommandName}, {Environment.NewLine}" +

@@ -30,7 +30,6 @@ namespace Goiar.Simple.Cqrs.Entities
         /// </summary>
         /// <param name="createdBy"> An identifier of the person that created this event </param>
         /// <param name="correlationId"> A batch identifier </param>
-        /// <param name="serializerSettings"> If null instanciates a new setting ignoring loop references and with idented format </param>
         public Event(string createdBy, Guid correlationId)
         {
             Id = Guid.NewGuid();
