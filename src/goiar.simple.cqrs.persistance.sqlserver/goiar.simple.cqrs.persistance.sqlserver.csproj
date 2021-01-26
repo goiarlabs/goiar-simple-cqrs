@@ -16,6 +16,7 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>sqlserver goiar cqrs</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   
   <ItemGroup>
