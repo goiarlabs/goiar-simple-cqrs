@@ -57,7 +57,7 @@ namespace Goiar.Simple.Cqrs
                 {
                     var command = await _eventQueue.Dequeue(stoppingToken);
                     _logger.LogDebug($"{nameof(EventSaverHostedService)} dequeued command with CommandName:" +
-                        $"{command.CommandName}.");
+                        $"{command.EventName}.");
 
                     using var scope = _serviceProvider.CreateScope();
                     var eventStore = scope.ServiceProvider.GetService<IEventStore>();

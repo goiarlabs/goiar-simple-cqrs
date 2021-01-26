@@ -33,7 +33,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
             Assert.NotEqual(default(Guid), @event.Id);
             Assert.NotEqual(default(DateTime), @event.CreatedOn);
             Assert.Equal(default(Guid), @event.EntityId);
-            Assert.Equal(default(string), @event.CommandName);
+            Assert.Equal(default(string), @event.EventName);
             Assert.Equal(default(string), @event.Content);
             Assert.Equal(default(string), @event.Result);
         }
@@ -51,7 +51,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
 
             @event.SetCommand<WeirdVoid, FakeSimpleCommand>(command);
 
-            Assert.Equal("Fake Simple Command", @event.CommandName);
+            Assert.Equal("Fake Simple Command", @event.EventName);
         }
 
 

@@ -29,7 +29,7 @@ namespace Goiar.Simple.Cqrs.Persistance
         /// <returns></returns>
         public Task Save(Event @event)
         {
-            _logger.LogInformation($"Recieved an event with command name : {@event.CommandName}, {Environment.NewLine}" +
+            _logger.LogInformation($"Recieved an event with command name : {@event.EventName}, {Environment.NewLine}" +
                 $"It took {@event.TimeElapsed.TotalMilliseconds}ms to complete {Environment.NewLine}" +
                 $"With content: {JsonConvert.SerializeObject(@event.Content, Formatting.Indented)} {Environment.NewLine}" +
                 $"With result: {JsonConvert.SerializeObject(@event.Result, Formatting.Indented)}");

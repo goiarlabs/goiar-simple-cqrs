@@ -3,6 +3,7 @@ using Goiar.Simple.Cqrs.Commands;
 using Goiar.Simple.Cqrs.Entities;
 using Goiar.Simple.Cqrs.Queries;
 using Goiar.Simple.Cqrs.UserIdentities;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,7 +49,7 @@ namespace Goiar.Simple.Cqrs
         /// <inheritdoc />
         public async Task<TResponse> Send<TResponse, TCommand>(TCommand message)
             where TResponse : class
-            where TCommand: ICommand<TResponse>
+            where TCommand : ICommand<TResponse>
         {
             var @event = new Event(
                 _userIdentityHolder.UserId ?? "NoId",
@@ -92,12 +93,7 @@ namespace Goiar.Simple.Cqrs
 
             try
             {
-                var handler = _serviceProvider.GetService(typeof(ICommandHandler<TCommand>)) as ICommandHandler<TCommand>;
-
-                if (handler is null)
-                {
-                    throw new InvalidOperationException($"there's no command handler regitered for {message.GetType().Name}");
-                }
+                var handler = GetHandler<ICommandHandler<TCommand>>(message.GetType().Name);
 
                 await handler.Handle(message);
 
@@ -122,21 +118,49 @@ namespace Goiar.Simple.Cqrs
         #region Query implementations
 
         /// <inheritdoc />
-        public Task<TResponse> Query<TResponse, TQuery>(TQuery query) where TQuery : IQuery
+        public async Task<TResponse> Query<TResponse, TQuery>(TQuery query) where TQuery : IQuery
         {
-            var handler = _serviceProvider.GetService(typeof(IQueryHandler<TResponse, TQuery>)) as IQueryHandler<TResponse, TQuery>;
+            var @event = new Event(
+                _userIdentityHolder.UserId ?? "NoId",
+                _correlationId);
 
-            if (handler is null)
+            @event.SetQuery<TResponse, TQuery>(query);
+
+            try
             {
-                throw new InvalidOperationException($"there's no query handler regitered for {query.GetType().Name}");
-            }
+                var handler = GetHandler<IQueryHandler<TResponse, TQuery>>(query.GetType().Name);
 
-            return handler.Handle(query);
+                var response = await handler.Handle(query);
+
+                @event.Success(response);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                @event.Failed(ex);
+                throw;
+            }
+            finally
+            {
+                _eventQueue.Enqueue(@event);
+            }
         }
 
         #endregion
 
         #region Private methods
+
+        private T GetHandler<T>(string eventTypeName)
+        {
+            var handler = _serviceProvider.GetService<T>();
+
+            if (handler is null)
+            {
+                throw new InvalidOperationException($"there's no query handler regitered for {eventTypeName}");
+            }
+
+            return handler;
+        }
 
         private static bool ShouldEnque(Type type)
         {

@@ -1,4 +1,5 @@
 ﻿using Goiar.Simple.Cqrs.Commands;
+using Goiar.Simple.Cqrs.Queries;
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -72,7 +73,7 @@ namespace Goiar.Simple.Cqrs.Entities
         /// <summary>
         /// Name of the command
         /// </summary>
-        public string CommandName { get; set; }
+        public string EventName { get; set; }
 
         /// <summary>
         /// Command's content
@@ -108,7 +109,21 @@ namespace Goiar.Simple.Cqrs.Entities
             var typedCommand = command as ICommand<TResponse>;
             EntityId = typedCommand.EntityId;
             Content = typedCommand;
-            CommandName = SeparatePascalCase(command.GetType().Name);
+            EventName = SeparatePascalCase(command.GetType().Name);
+            _stopWatch.Start();
+        }
+
+        /// <summary>
+        /// Sets a query
+        /// </summary>
+        /// <typeparam name="TResponse"></typeparam>
+        /// <typeparam name="TQuery"></typeparam>
+        /// <param name="query"></param>
+        public void SetQuery<TResponse, TQuery>(object query)
+            where TQuery : IQuery
+        {
+            Content = query;
+            EventName = SeparatePascalCase(query.GetType().Name);
             _stopWatch.Start();
         }
 

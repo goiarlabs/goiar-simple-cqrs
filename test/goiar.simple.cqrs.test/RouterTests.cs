@@ -77,7 +77,7 @@ namespace Goiar.Simple.Cqrs.Tests
             await _classUnderTest.Send(command);
 
             Assert.Contains(_eventQueue.InternalQueue,
-                e => e.CommandName == "Fake Simple Command"
+                e => e.EventName == "Fake Simple Command"
                     && e.CreatedBy == "NoId"
                     && (e.Content as FakeSimpleCommand).Message == command.Message
                     && (e.Result as string) == "Success");
@@ -98,7 +98,7 @@ namespace Goiar.Simple.Cqrs.Tests
             await _classUnderTest.Send(command);
 
             Assert.Contains(_eventQueue.InternalQueue,
-                e => e.CommandName == "Fake Simple Command"
+                e => e.EventName == "Fake Simple Command"
                     && e.CreatedBy == createdBy
                     && (e.Content as FakeSimpleCommand).Message == command.Message
                     && (e.Result as string) == "Success");
@@ -123,7 +123,7 @@ namespace Goiar.Simple.Cqrs.Tests
             Assert.Equal(exception, exceptionRes);
 
             Assert.Contains(_eventQueue.InternalQueue,
-                e => e.CommandName == "Fake Simple Command"
+                e => e.EventName == "Fake Simple Command"
                     && (e.Content as FakeSimpleCommand).Message == command.Message
                     && (e.Result as Exception).Message == responseMessage);
         }
@@ -172,7 +172,7 @@ namespace Goiar.Simple.Cqrs.Tests
             var response = await _classUnderTest.Send<FakeCommandResponse, FakeResponseCommand>(command);
 
             Assert.Contains(_eventQueue.InternalQueue,
-                e => e.CommandName == "Fake Response Command"
+                e => e.EventName == "Fake Response Command"
                     && (e.Content as FakeResponseCommand).Message == command.Message
                     && (e.Result as FakeCommandResponse).Message == command.Message
                     && e.CreatedBy == "NoId");
@@ -192,7 +192,7 @@ namespace Goiar.Simple.Cqrs.Tests
             var response = await _classUnderTest.Send<FakeCommandResponse, FakeResponseCommand>(command);
 
             Assert.Contains(_eventQueue.InternalQueue,
-                e => e.CommandName == "Fake Response Command"
+                e => e.EventName == "Fake Response Command"
                     && (e.Content as FakeResponseCommand).Message == command.Message
                     && (e.Result as FakeCommandResponse).Message == command.Message
                     && e.CreatedBy == createdBy);
@@ -231,7 +231,7 @@ namespace Goiar.Simple.Cqrs.Tests
             Assert.Equal(exception, exceptionRes);
 
             Assert.Contains(_eventQueue.InternalQueue,
-                e => e.CommandName == "Fake Response Command"
+                e => e.EventName == "Fake Response Command"
                     && (e.Content as FakeResponseCommand).Message == command.Message
                     && (e.Result as Exception).Message == resultMessage);
         }
