@@ -9,6 +9,14 @@
 
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Copyright>Goiar</Copyright>
+    <Description>Rabbit mq sender for goiar cqrs</Description>
+    <PackageProjectUrl>https://github.com/goiarlabs/goiar-simple-cqrs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/goiarlabs/goiar-simple-cqrs</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>RabbitMQ Goiar CQRS</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +26,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\goiar.simple.cqrs\goiar.simple.cqrs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

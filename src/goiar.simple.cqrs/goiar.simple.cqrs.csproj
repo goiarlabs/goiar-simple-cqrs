@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -10,6 +10,13 @@
 
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>CQRS Router and enforcer, kinda like mediatr but ultra custom</Description>
+    <Copyright>Goiar</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/goiarlabs/goiar-simple-cqrs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/goiarlabs/goiar-simple-cqrs</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>CQRS Goiar</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

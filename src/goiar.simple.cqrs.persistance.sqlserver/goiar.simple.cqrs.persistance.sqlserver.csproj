@@ -6,6 +6,16 @@
 
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>SqlServer helper for goiar cqrs</Description>
+    <Authors>@dongata</Authors>
+    <Company>Goiar</Company>
+    <Copyright>Goiar</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/goiarlabs/goiar-simple-cqrs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/goiarlabs/goiar-simple-cqrs</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>sqlserver goiar cqrs</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
   
   <ItemGroup>
@@ -14,6 +24,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\goiar.simple.cqrs\goiar.simple.cqrs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
