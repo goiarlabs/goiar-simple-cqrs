@@ -22,4 +22,4 @@ public class Startup
 }
 ```
 
-This two lines will search for every implementation of `IQueryHandler<>`, `ICommandHandler<>` and `ICommandHandler<,>` on the assembly where the given class is Created. You can use these two lines as many times as you want, be careful only that if you already have a 
+This two lines will search for every implementation of `IQueryHandler<>`, `ICommandHandler<>` and `ICommandHandler<,>` on the assembly where the given class is Created. You can use these two lines as many times as you want.
