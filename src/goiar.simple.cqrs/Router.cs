@@ -142,7 +142,10 @@ namespace Goiar.Simple.Cqrs
             }
             finally
             {
-                _eventQueue.Enqueue(@event);
+                if (ShouldEnque(typeof(TQuery)))
+                {
+                    _eventQueue.Enqueue(@event);
+                }
             }
         }
 
