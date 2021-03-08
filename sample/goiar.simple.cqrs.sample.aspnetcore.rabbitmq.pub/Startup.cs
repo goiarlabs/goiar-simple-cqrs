@@ -55,8 +55,6 @@ namespace goiar.simple.cqrs.sample.aspnetcore.rabbitmq.pub
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "goiar.simple.cqrs.sample.aspnetcore.rabbitmq.pub v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
