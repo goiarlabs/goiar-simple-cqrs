@@ -17,13 +17,14 @@ namespace Microsoft.Extensions.Hosting
         /// Adds the queues subscriber to accept new messages from the queue
         /// </summary>
         /// <param name="host"></param>
+        /// <param name="subscriptionId"></param>
         /// <returns></returns>
-        public static IHost SubscribeToCqrsQueue(this IHost host)
+        public static IHost SubscribeToCqrsQueue(this IHost host, string subscriptionId = "Events")
         {
             var bus = host.Services.GetService(typeof(IBus)) as IBus;
 
             bus.PubSub.SubscribeAsync<Event>(
-                "coso",
+                subscriptionId,
                 a => HandleEvent(host.Services, a));
 
             return host;
