@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "goiar.simple.cqrs.sample.as
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AF70B2E7-07F3-47E6-B150-BB12959AA2BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goiar.Simple.Cqrs.persistance.eventhubs", "src\Goiar.Simple.Cqrs.persistance.eventhubs\Goiar.Simple.Cqrs.persistance.eventhubs.csproj", "{6015D693-FA66-4E9F-8F60-E2A6DACED015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "goiar.simple.cqrs.sample.aspnetcore.eventhubs", "sample\goiar.simple.cqrs.sample.aspnetcore.eventhubs\goiar.simple.cqrs.sample.aspnetcore.eventhubs.csproj", "{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +135,30 @@ Global
 		{AF70B2E7-07F3-47E6-B150-BB12959AA2BC}.Release|x64.Build.0 = Release|Any CPU
 		{AF70B2E7-07F3-47E6-B150-BB12959AA2BC}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF70B2E7-07F3-47E6-B150-BB12959AA2BC}.Release|x86.Build.0 = Release|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Debug|x64.Build.0 = Debug|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Debug|x86.Build.0 = Debug|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Release|x64.ActiveCfg = Release|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Release|x64.Build.0 = Release|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Release|x86.ActiveCfg = Release|Any CPU
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015}.Release|x86.Build.0 = Release|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Debug|x64.Build.0 = Debug|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Debug|x86.Build.0 = Debug|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Release|x64.ActiveCfg = Release|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Release|x64.Build.0 = Release|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Release|x86.ActiveCfg = Release|Any CPU
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +171,8 @@ Global
 		{042CB9E1-D817-434D-9293-02FF2FC9C5F6} = {80DF8160-1CE1-4660-85A0-C368E5BDAF44}
 		{46C79DE9-327E-47E6-A935-84E6E3958657} = {80DF8160-1CE1-4660-85A0-C368E5BDAF44}
 		{DBC325FE-1CED-4694-8151-8375A5BAE1D9} = {80DF8160-1CE1-4660-85A0-C368E5BDAF44}
+		{6015D693-FA66-4E9F-8F60-E2A6DACED015} = {B928702E-3438-40BB-B6A5-DEBDB5D09F6A}
+		{AADB984D-0ADA-4963-AE9B-9BDE84CF9021} = {80DF8160-1CE1-4660-85A0-C368E5BDAF44}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F37C8175-5BF8-4B46-B60E-74363E277171}
