@@ -82,6 +82,38 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
 
         #endregion
 
+        #region Start Stopwatch Tests
+
+        [Fact]
+        public void StartStopwatch_ShouldSetEventName()
+        {
+            var command = new FakeSimpleCommand("I'm a command c:");
+
+            var @event = new Event("CreatedBy", Guid.NewGuid());
+
+            var eventName = "Fake command successfully completed.";
+
+            @event.StartStopwatch(content: command, eventName: eventName);
+
+            Assert.Equal(eventName, @event.EventName);
+        }
+
+        [Fact]
+        public void StartStopwatch_ShouldSetContent()
+        {
+            var command = new FakeSimpleCommand("I'm a command c:");
+
+            var @event = new Event("CreatedBy", Guid.NewGuid());
+
+            var eventName = "Fake command successfully completed.";
+
+            @event.StartStopwatch(content: command, eventName: eventName);
+
+            Assert.Equal(command, @event.Content);
+        }
+
+        #endregion
+
         #region Failed Tests
 
         [Fact]
@@ -135,7 +167,7 @@ namespace Goiar.Simple.Cqrs.Tests.Entitites
 
             Assert.Equal("Success", @event.Result);
         }
-        
+
         [Fact]
         public void Success_ShouldSetTimeElapsed()
         {
