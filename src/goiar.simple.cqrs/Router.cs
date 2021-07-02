@@ -159,7 +159,7 @@ namespace Goiar.Simple.Cqrs
 
             if (handler is null)
             {
-                throw new InvalidOperationException($"there's no query handler regitered for {eventTypeName}");
+                throw new InvalidOperationException($"there's no handler registered for {eventTypeName}");
             }
 
             return handler;

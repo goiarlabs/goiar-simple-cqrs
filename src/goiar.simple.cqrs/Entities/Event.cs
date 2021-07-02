@@ -128,6 +128,19 @@ namespace Goiar.Simple.Cqrs.Entities
         }
 
         /// <summary>
+        /// Sets data for the event to be persisted and starts stopwatch. 
+        /// </summary>
+        /// <param name="content">Command or query to be used.</param>
+        /// <param name="eventName">A descriptive name for the event to be persisted.</param>
+        public void StartStopwatch(object content, string eventName)
+        {
+            Content = content;
+            EventName = eventName;
+            _stopWatch.Start();
+        }
+
+
+        /// <summary>
         /// Fills the result with the exception that made this fail
         /// </summary>
         /// <param name="ex"></param>

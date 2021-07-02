@@ -6,6 +6,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>@dongata</Authors>
     <Company>Goiar</Company>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Event class added StartStopwatch method.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -61,7 +61,7 @@ namespace Goiar.Simple.Cqrs.Tests
                 () => _classUnderTest.Send(command)
             );
 
-            Assert.Equal("there's no command handler regitered for FakeSimpleCommand", exception.Message);
+            Assert.Equal("there's no handler registered for FakeSimpleCommand", exception.Message);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace Goiar.Simple.Cqrs.Tests
                 () => _classUnderTest.Query<FakeQueryResponse, FakeQuery>(query)
             );
 
-            Assert.Equal("there's no query handler regitered for FakeQuery", exception.Message);
+            Assert.Equal("there's no handler registered for FakeQuery", exception.Message);
         }
 
         #endregion
