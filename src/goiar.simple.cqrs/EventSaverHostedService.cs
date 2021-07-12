@@ -18,7 +18,7 @@ namespace Goiar.Simple.Cqrs
 
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger _logger;
-        private readonly EventQueue _eventQueue;
+        private readonly IEventQueue _eventQueue;
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace Goiar.Simple.Cqrs
         /// <param name="serviceProvider"></param>
         /// <param name="eventQueue"></param>
         /// <param name="logger"></param>
-        public EventSaverHostedService(IServiceProvider serviceProvider, EventQueue eventQueue, ILogger<EventSaverHostedService> logger)
+        public EventSaverHostedService(IServiceProvider serviceProvider, IEventQueue eventQueue, ILogger<EventSaverHostedService> logger)
         {
             _serviceProvider = serviceProvider;
             _eventQueue = eventQueue;
