@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 namespace Goiar.Simple.Cqrs.Entities
 {
     /// <summary>
-    /// Represents an in memory quueue thata holds it excecution until something is enqueued
+    /// Represents an in memory queue that holds it execution until something is enqueued.
     /// </summary>
-    public class EventQueue
+    public class EventQueue : IEventQueue
     {
         #region Fields
 
@@ -25,21 +25,14 @@ namespace Goiar.Simple.Cqrs.Entities
 
         #region Public Methods
 
-        /// <summary>
-        /// Enqueues a new element onto the queue and releases the signal
-        /// </summary>
-        /// <param name="event"></param>
+        /// <inheritdoc cref = "IEventQueue" />
         public void Enqueue(Event @event)
         {
             _events.Enqueue(@event);
             _signal.Release();
         }
 
-        /// <summary>
-        /// Waits until something is enqueued and enqueues it
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <inheritdoc cref = "IEventQueue" />
         public async Task<Event> Dequeue(CancellationToken cancellationToken)
         {
             await _signal.WaitAsync(cancellationToken);
