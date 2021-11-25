@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddScoped<IUserIdentityHolder, UserIdentityHolder>();
 
-            services.AddSingleton<EventQueue>();
+            services.AddSingleton<IEventQueue, EventQueue>();
             services.AddHostedService<EventSaverHostedService>();
 
             return services;
