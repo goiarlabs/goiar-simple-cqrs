@@ -6,8 +6,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>@dongata</Authors>
     <Company>Goiar</Company>
-    <Version>1.0.2</Version>
-    <PackageReleaseNotes>IEventQueue interface was added.</PackageReleaseNotes>
+    <Version>1.0.3</Version>
+    <PackageReleaseNotes>Fix in IEventQueue interface use.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>

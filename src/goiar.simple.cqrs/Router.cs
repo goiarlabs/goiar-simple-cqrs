@@ -19,7 +19,7 @@ namespace Goiar.Simple.Cqrs
 
         private readonly Guid _correlationId;
         private readonly IServiceProvider _serviceProvider;
-        private readonly EventQueue _eventQueue;
+        private readonly IEventQueue _eventQueue;
         private readonly IUserIdentityHolder _userIdentityHolder;
 
         #endregion
@@ -34,7 +34,7 @@ namespace Goiar.Simple.Cqrs
         /// <param name="eventQueue"></param>
         /// <param name="userIdentityHolder"></param>
         /// <param name="correlationId"></param>
-        public Router(IServiceProvider serviceProvider, EventQueue eventQueue, IUserIdentityHolder userIdentityHolder, Guid? correlationId = null)
+        public Router(IServiceProvider serviceProvider, IEventQueue eventQueue, IUserIdentityHolder userIdentityHolder, Guid? correlationId = null)
         {
             _serviceProvider = serviceProvider;
             _userIdentityHolder = userIdentityHolder;
